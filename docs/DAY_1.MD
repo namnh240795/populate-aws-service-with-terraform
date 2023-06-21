@@ -40,3 +40,9 @@ resource "aws_subnet" "private" {
     }
 }
 ```
+
+```
+CIDR is very `important`
+10.0.0.0/16 contains more than 60k ip address
+10.0.1.0/24 contains only 256 ips
+```
