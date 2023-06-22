@@ -28,3 +28,37 @@ resource "aws_subnet" "public" {
         Environment = var.environment
     }
 }
+
+
+// Attach Internet Gateway to VPC
+resource "aws_internet_gateway" "internet_gateway" {
+    vpc_id = aws_vpc.main.id
+    tags = {
+        Name = "${var.vpc_name}-${var.environment}-igw"
+        Environment = var.environment
+    }
+}
+
+// Attach route table to VPC
+resource "aws_route_table" "public" {
+    vpc_id = aws_vpc.main.id
+    tags = {
+        Name = "${var.vpc_name}-${var.environment}-public-route-table"
+        Environment = var.environment
+    }
+}
+
+// Attach route to route table
+resource "aws_route" "public" {
+    route_table_id         = aws_route_table.public.id
+    destination_cidr_block = "0.0.0.0/0"
+    gateway_id             = aws_internet_gateway.internet_gateway.id
+}
+
+// Assiocate route table with public subnet
+resource "aws_route_table_association" "public" {
+    subnet_id      = element(aws_subnet.public.*.id, count.index)
+    route_table_id = element(aws_route_table.public.*.id, count.index)
+    count = length(var.public_subnets)
+}
+
