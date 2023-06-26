@@ -1,7 +1,6 @@
 ---
 marp: true
 title: XYZ
-theme: dark
 ---
 
 # VPC

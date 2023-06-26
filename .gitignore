@@ -2,3 +2,4 @@ rootkey.csv
 terraform.tfstate*
 .terraform
 *.cer
+.ssh
