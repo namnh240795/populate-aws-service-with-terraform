@@ -1,9 +1,8 @@
 ---
 marp: true
-title: XYZ
 ---
 
-# To day we will deploy ec2 with terraform
+#### To day we will deploy ec2 with terraform
 
 - First let's generate new ssh key
 
@@ -21,7 +20,7 @@ title: XYZ
 
 ---
 
-# Now create firewall rules to allow connection to aws ec2 instance
+#### Now create firewall rules to allow connection to aws ec2 instance
 
 ```ts
     resource "aws_security_group" "ec2_to_internet" {
@@ -46,7 +45,7 @@ title: XYZ
 
 ---
 
-# Note about the syntax
+#### Note about the syntax
 
 - `egress`: the request going out of the ec2
 - `ingress`: the request going to the ec2
@@ -56,7 +55,7 @@ title: XYZ
 
 ---
 
-# Now we need to set up the instance type
+#### Now we need to set up the instance type
 
 - lets set instance type to t2.micro
 
@@ -68,36 +67,36 @@ data "aws_ec2_instance_type" "t2_micro" {
 
 ---
 
-# Set up AWS Machine Image data
+#### Set up AWS Machine Image data
 
 - after that we need to choose the aws_ami (ami stand for aws machine image like ubuntu, centos,...)
 
 ```ts
     data "aws_ami" "aws_ubuntu" {
-    most_recent = true
-    owners      = ["amazon"]
+        most_recent = true
+        owners      = ["amazon"]
 
 
-    filter {
-        name   = "name"
-        values = ["amzn-ami-hvm*"]
-    }
+        filter {
+            name   = "name"
+            values = ["amzn-ami-hvm*"]
+        }
 
-    filter {
-        name   = "root-device-type"
-        values = ["ebs"]
-    }
+        filter {
+            name   = "root-device-type"
+            values = ["ebs"]
+        }
 
-    filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
+        filter {
+            name   = "virtualization-type"
+            values = ["hvm"]
+        }
     }
 ```
 
 ---
 
-# Finally create the aws instance with this command
+#### Finally create the aws instance with this command
 
 - Attach it to the public subnet so it is able to access from internet and returun the content
 

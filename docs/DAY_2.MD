@@ -1,16 +1,15 @@
 ---
 marp: true
-title: XYZ
 ---
 
-# VPC
+#### VPC
 - VPC => Virtual Network
 - Subnets: Range of ip address in VPC
 - Can deploy resources after we have the subnets
 ---
 
 
-# Subnet
+#### Subnet
 - So today we will make the public vpc have the access to the internet
 
 - Step 1: Create Public Route Table And Internet Gateway
@@ -18,7 +17,7 @@ title: XYZ
 - Step 3: Connect the route table with the internet gate way
 ---
 
-# Note
+#### Note
 Basically everything has the public subnet will be available on the internet.
 - Internet gateway allow instances (load balancer, ec2) with public IPS to access the internet
 

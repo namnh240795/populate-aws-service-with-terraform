@@ -1,9 +1,8 @@
 ---
 marp: true
-title: XYZ
 ---
 
-# Note
+#### Note
 
 - First for the `vpc module`, we'll have 3 files, `main`, the `output`, and the `variables`
 
@@ -13,7 +12,7 @@ title: XYZ
 ---
 
 
-# Syntax
+#### Syntax
 
 ```
 resource [module] [local_variable_name] {
@@ -34,7 +33,7 @@ resource "aws_vpc" "main" {
 ```
 ---
 
-# CIDR
+#### CIDR
 - so you can see that the `cidr_block` will use the cidr in the `modules/vpc/variables.tf`
 
 - after that we will have `aws_vpc.main` variables in local and it could be use like this
@@ -54,7 +53,7 @@ resource "aws_subnet" "private" {
 ```
 ---
 
-# Slide 5
+#### Slide 5
     - CIDR is very `important`
 
 #### Example
