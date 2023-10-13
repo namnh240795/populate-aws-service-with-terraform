@@ -1,0 +1,52 @@
+# name: Prosivion Infrastructure
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - 'devops/**'
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   terraform-plan:
+#     name: 'Terraforming Terranomics'
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         working-directory: ./terraform/dev
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: 'ap-southeast-1'
+
+#       - uses: hashicorp/setup-terraform@v1
+
+#       - name: Terraform fmt
+#         id: fmt
+#         run: terraform fmt -check
+#         continue-on-error: true
+
+#       - name: Terraform Init
+#         id: init
+#         run: terraform init
+
+#       - name: Terraform Validate
+#         id: validate
+#         run: terraform validate -no-color
+
+#       - name: Terraform Plan
+#         id: plan
+#         run: terraform plan -no-color
+#         continue-on-error: true
+
+#       - name: Terraform Plan Status
+#         if: steps.plan.outcome == 'failure'
+#         run: exit 1
