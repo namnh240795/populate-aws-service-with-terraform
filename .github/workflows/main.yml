@@ -51,4 +51,16 @@ jobs:
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
-        run: exit 1
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply
+      
+      - name: Terraform Apply status
+        if: steps.apply.outcome == 'failure'
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
