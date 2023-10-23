@@ -57,7 +57,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply
+        run: terraform apply -auto-approve -no-color
       
       - name: Terraform Apply status
         if: steps.apply.outcome == 'failure'
