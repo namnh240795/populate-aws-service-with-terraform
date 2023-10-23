@@ -3,3 +3,4 @@ terraform.tfstate*
 .terraform
 *.cer
 .ssh
+node_modules
