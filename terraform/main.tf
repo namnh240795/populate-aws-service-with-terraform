@@ -34,3 +34,8 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
   }
 }
 
+module "resume" {
+  source = "./modules/resume"
+  bucket_name = "yellowcandle-resume"
+  environment = "dev"
+}
